@@ -11,6 +11,7 @@
 	<result column="alarm_url" property="alarmURL"/>
 	<result column="alarm_date" property="alarmDate"/>
 	<result column="booking_no" property="bookingNo"/>
+	<result column="sub_name" property="supName"/>
 </resultMap>
 
 <insert id="insertAlarm">
@@ -49,19 +50,23 @@
 
 <select id="selectAlarmList" resultMap="alaResult">
 	select 
-		   alarm_no
-	      ,user_id
-	      ,check_yn
-	      ,alarm_code
-	      ,alarm_title
-	      ,alarm_url
-	      ,booking_no
-	      <!-- ,sub_name -->
-	      ,to_char(reg_date,'YYYY-MM-DD') AS alarm_date
-	 from tb_alarm
+			   alarm_no
+		      ,user_id
+		      ,check_yn
+		      ,alarm_code
+		      ,alarm_title
+		      ,alarm_url
+		      ,al.booking_no
+		      ,c.sub_name
+		      ,to_char(al.reg_date,'YYYY-MM-DD') AS alarm_date
+	 from tb_alarm al
+   join tb_booking b on ( al.booking_no = b.booking_no)
+   join tb_assets a on (a.assets_no = b.assets_no)
+   join tb_common c on (c.main_code = a.main_code)
 	where user_id = #{userId}
-	  and del_yn = 'N'
-	order by reg_date desc
+	  and al.del_yn = 'N'
+    and a.sub_code= c.sub_code
+	order by al.reg_date desc
 </select>
 
 <select id="selectAlarmNo" resultType="_int">
