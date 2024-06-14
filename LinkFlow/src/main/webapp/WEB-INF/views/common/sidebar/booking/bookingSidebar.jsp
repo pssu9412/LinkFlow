@@ -324,7 +324,6 @@
 	    
     function dateSet() {
         var now = new Date();
-        console.log(now);
         /***************************** 날짜 초기화 ***********************************/
         $(".setYear").empty();
         $(".setMonth").empty();
@@ -342,15 +341,17 @@
             $(".setYear").append("<option value='" + nextYear + "'>" + nextYear + "</option>");
             $("#endYear").append("<option value='" + nextYear + "'>" + nextYear + "</option>");
         }
-        
         // 월 셋팅
         var currentMonth = String(now.getMonth() + 1).padStart(2, '0');
-        var nextMonth = String(now.getMonth() + 2).padStart(2, '0');
+        if(currentMonth == '12'){
+        	var nextMonth = '01';
+        }else{
+	        var nextMonth = String(now.getMonth() + 2).padStart(2, '0');
+        }
         $(".setMonth").append("<option value='" + currentMonth + "'>" + currentMonth + "</option>");
         $(".setMonth").append("<option value='" + nextMonth + "'>" + nextMonth + "</option>");
         $("#endMonth").append("<option value='" + currentMonth + "'>" + currentMonth + "</option>");
         $("#endMonth").append("<option value='" + nextMonth + "'>" + nextMonth + "</option>");
-        
         // 일 셋팅
         var currentDay = String(now.getDate()).padStart(2, '0');
         $(".setDay").append("<option value='" + currentDay + "'>" + currentDay + "</option>");
@@ -364,7 +365,6 @@
             }
         }
         /***************************** 날짜 초기화 ***********************************/
-        
         $(".setYear").change(function() {
             $(".setDay").empty();
             var tempDate = new Date($(this).val(), $(".setMonth").val() - 1, 0);

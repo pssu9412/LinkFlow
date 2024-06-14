@@ -142,7 +142,6 @@ input[type="checkbox"] {
                                         end: bk.bkStartDate + 'T' + bk.bkEndTime,
                                         backgroundColor: '',
                                         borderColor: '',
-                                        /* allDay: false */
                                     };
                                     if (bk.assetsName == "A") {
                                         event.title = '회의실A';
@@ -158,7 +157,6 @@ input[type="checkbox"] {
                                         event.borderColor = '#f0674b'; 
                                     }
                                     events.push(event);
-                                    
                                 });
                             }
                             successCallback(events);
@@ -169,7 +167,6 @@ input[type="checkbox"] {
 		                          googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com',
 		                          classNames: 'holiday',
 		                          constraint: 'availableForMeeting'
-                      			
                 }] 
             });
            

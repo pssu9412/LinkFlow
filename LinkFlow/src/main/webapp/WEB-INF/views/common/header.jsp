@@ -262,7 +262,6 @@
     }
     
     function createItem(alNo,title,url,date,bkNo,sup ){
-    	console.log(sup);
     	let newAlarm = "<div class='alarmDropSet'><a href='${contextPath}"+ url +"?no="+ bkNo + "&sup="+ sup  +"' class='dropdown-item alarmItems'"
     				 + " onclick=\"readAlarm('"+ alNo +"');\"><i class='fas fa-clock mr-2'></i>"
     				 +"&nbsp;<div class='alarmSet'><p>"+title + "</p><span class='float-right text-muted text-sm alarmDate'>"+ date + "</span>"
